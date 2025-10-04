@@ -9,8 +9,8 @@ setDTthreads(12)
 setwd("C:/Users/heyac/OneDrive/vus_survey/analysis")
 
 # add custom fonts
-font_add("HelveticaNeue-Bold", "HelveticaNeueBold.otf")
-font_add("HelveticaNeue-Roman", "HelveticaNeueRoman.otf")
+font_add("HelveticaNeue-Bold", "fonts/HelveticaNeueBold.otf")
+font_add("HelveticaNeue-Roman", "fonts/HelveticaNeueRoman.otf")
 showtext_auto()
 
 # read survey results
@@ -86,3 +86,4 @@ cleaned_data <- cleaned_data[
 ]
 
 #fwrite(cleaned_data, "survey_data.csv")
+
