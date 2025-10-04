@@ -6,13 +6,13 @@ library(writexl)
 
 setDTthreads(12)
 
-# set working directory
-setwd("C:/Users/heyac/Downloads/clinvar_20250721.vcf/")
+# define ClinVar url
+clinvar_url <- "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/clinvar.vcf.gz" 
 
 #### 1. IMPORT DATA ####
 
 # import ClinVar VCF 
-clinvar <- fread("clinvar_20250721.vcf", header = TRUE, na.strings = ".")
+clinvar <- fread(clinvar_url, header = TRUE, na.strings = ".")
 setDT(clinvar)
 
 # import gene lists
@@ -127,4 +127,5 @@ distribution_hvl <- filtered_variants[, .N, by = .(domain, class)]
 
 # View distribution
 #write_xlsx(distribution_table, "distribution_table.xlsx")
+
 
