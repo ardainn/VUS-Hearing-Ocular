@@ -1,5 +1,5 @@
 # define required packages
-packages <- c("tidyverse", "data.table", "ggplot2")
+packages <- c("data.table", "showtext", "writexl")
 
 # install any missing packages
 installed <- packages %in% rownames(installed.packages())
