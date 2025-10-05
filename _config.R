@@ -1,4 +1,4 @@
-require(data.table)
+library(data.table)
 library(showtext)
 library(writexl)
 
@@ -86,4 +86,5 @@ cleaned_data <- cleaned_data[
 ]
 
 #fwrite(cleaned_data, "survey_data.csv")
+
 
