@@ -85,7 +85,8 @@ cleaned_data <- cleaned_data[
   rowSums(is.na(cleaned_data)) < (ncol(cleaned_data) / 2)
 ]
 
-#fwrite(cleaned_data, "survey_data.csv")
+#fwrite(cleaned_data, "data/processed/survey_data.csv")
+
 
 
 
