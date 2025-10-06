@@ -6,7 +6,7 @@ library(writexl)
 setDTthreads(12)
 
 # set working directory
-setwd("C:/Users/heyac/OneDrive/vus_survey/analysis")
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 # add custom fonts
 font_add("HelveticaNeue-Bold", "fonts/HelveticaNeueBold.otf")
@@ -86,6 +86,7 @@ cleaned_data <- cleaned_data[
 ]
 
 #fwrite(cleaned_data, "data/processed/survey_data.csv")
+
 
 
 
