@@ -1,8 +1,8 @@
 library(patchwork)
 
 # get survey data and helper functions
-source("_config.R")
-source("_helper.R")
+source("../01_config.R")
+source("../02_helpers.R")
 
 #### DISEASE DOMAIN ####
 count_domain <- cleaned_data[!is.na(disease_domain), .N, by = disease_domain]
@@ -45,3 +45,4 @@ ggsave(
   units = "cm",
   dpi = 300
 )
+
