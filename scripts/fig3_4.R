@@ -1,6 +1,6 @@
 # get survey data and helper functions
-source("_config.R")
-source("_helper.R")
+source("../01_config.R")
+source("../02_helpers.R")
 
 # define plot colors
 colors <- c("#EAF7A1", "#7fcdbb", "#1d91c0")
@@ -45,3 +45,4 @@ plot_likert(likert_df_fe, colors = colors, file_name = "likert_funcev_task.png")
 
 # run fisher test
 results_fe <- run_fisher(cleaned_data, likert_df_fe)
+
