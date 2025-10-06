@@ -1,0 +1,38 @@
+handling_conflicting_evid
+Discuss details with authors.
+"Often regarding splice-altering variants, depending on the in vitro model used to determine the splice defect, different results were encountered (e.g. HEK293T vs iPSC-derived models). "
+"two different paper with different result, using different assays"
+cautiously
+"Document the conflicting findings, and include both sides in the report"
+I followed the rules set by the ClinGen HLWG.
+described conflicting data and mosly classified as VUS
+classification as VUS
+Assesed the articles to find which is most trustworthy/which of the functional evidense should count more
+"Functional result is usually assessed as supporting evidence to interpret the genetic phenomenon In most cases, such variants will likely remain classified as VUS, unless the reasons for the conflict in functional results can be explained or resolved."
+We usually try to confirm the pathogenicity of variants in vivo using animal models
+varies dependent upon the nature of it and the balance
+"The practice in ClinGen VCEPs is to consult the experts about which piece of functional evidence is more convincing, if any. The evidence with better controls or more clinically relevant assays may be prioritized."
+"There are many in ClinVar, we try to have a deeper look in the the literature and ocasionally generate our own data"
+I am reviewing each functional experiments (methods and material) to conclude which is the most strong evidence.
+"Detail paper reading. If unclear, this information were not used for variant classification. "
+"I integrate with other evidence  and consider clinical, segregation, and computational data to support or refute functional findings."
+"As I am lucky to work in a research genetic lab myself, I performed a new functional validation and confirmed one of the previous assessments."
+Not applying either PS3 or BS3 at any level strenght.
+The evidence was discussed in Multidiciplinary teams or with other peers according to the ClinGen disease-specific classification guidelines or the ClinGen PS3/BS3 guideline.  
+"As part of a ClinGen VCEP, we developed recommendations based on the Brnich et al paper (PMID 31892348). If results from different assays are conflicting for a single variant, then the result from the assay with the highest level of validation and a conclusive result can override the result from the other assay. However, if the results from the study with the highest level of validation are inconclusive , then functional evidence is not used for that variant."
+"it is often an overestimation of the pathogenic variant, even though other evidence suggests otherwise and population data on the variant are also quite high."
+"Assessment of the functional studies by considering the model organism(s) utilized, assay calibration, usage of negative and positive controls, type of experiments performed, impact factor of the publishing journal. Weighing the studies against each other and consulting with other professionals."
+Potential disease variant did not develop disease phenotyp in knock-in mice
+Given it less weight compared to clinical cases
+"Evaluate the functional evidence including in vitro vs. in vivo (or animal models), year of publication, experimental set up including controls and data quality  "
+The disease associated genome mutation did not show disease phenotype in knock-in mice. Continue to search novel mutation.
+critical evaluation of data. If both evidence are equal quality this information is not included in final evidence for variant classifcation
+segregation analysis in the relatives
+"In the context of rare diseases and consanguineous populations, we have previously described extremely rare variants associated with a specific disease phenotype that are common among patients within a family or shared among different patients in unrelated families, which are reported as  (LB). This highlights the need to investigate the reclassification of variants in consanguineous populations, especially as there is an increasing pattern of homozygosity."
+"I have weighed the corresponding papers, and made a calculated decision based on my own interpretation of the results (validity, specificity), taken together with the type of journal, the authors, etc."
+"Either don't use functional evidence at all, or downgrade level of evidence applicable (when classifying using ACGS/ACMG guidelines)"
+Less conflicts and more due to incomplete controls or assays that do not directly assess function. Or due to lack of details about patient phenotypes. Or due to assays that measure something that is hard to directly correlate with the phenotype.
+Classified variant as VOUS unless obvious problem with the data that renders it unusable.
+MDT discussion
+"Attempt to assess/evaluate the validity of the functional assays; for example, one may appear much more robust and quantitative than another; or there may be multiple high quality studies supporting the same functional effect and a single study reporting no effect. However, typically conflicting evidence results in decision not to use the functional evidence toward variant interpretation."
+"Contacting the lab that generated the data, re-evaluate the disease mechanism, consider limitations of the assay or aspects such as penetrance or potential for modifiers (which often leaves the case open, unfortunately)"
