@@ -4,8 +4,8 @@ library(patchwork)
 library(tidyr)
 
 # get survey data and helper functions
-source("_config.R")
-source("_helper.R")
+source("../01_config.R")
+source("../02_helpers.R")
 
 #### SCOPE OF VARIANT INT. ####
 
@@ -57,5 +57,6 @@ ggsave(
   units = "cm",
   dpi = 300
 )
+
 
 
