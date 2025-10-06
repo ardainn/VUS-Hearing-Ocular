@@ -14,8 +14,8 @@ font_add("HelveticaNeue-Roman", "fonts/HelveticaNeueRoman.otf")
 showtext_auto()
 
 # read survey results
-data <- fread('data/AssessmentOfCurrentA_DATA_2025-08-18_0707.csv')
-source("data/AssessmentOfCurrentA_R_2025-08-18_0707.r")
+data <- fread('data/raw/AssessmentOfCurrentA_DATA_2025-08-18_0707.csv')
+source("data/raw/AssessmentOfCurrentA_R_2025-08-18_0707.r")
 
 # remove incomplete records
 cleaned_data <- data[data[[3]] != '[not completed]']
@@ -86,6 +86,7 @@ cleaned_data <- cleaned_data[
 ]
 
 #fwrite(cleaned_data, "data/processed/survey_data.csv")
+
 
 
 
