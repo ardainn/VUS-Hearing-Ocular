@@ -6,7 +6,7 @@ library(rnaturalearth)
 library(scales)
 
 # get survey data
-source("_config.R")
+source("../01_config.R")
 
 #### PROFESSIONAL POSITIONS ####
 
@@ -325,4 +325,5 @@ ggsave(
   units = "cm",
   dpi = 300
 )
+
 
