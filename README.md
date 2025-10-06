@@ -1,4 +1,4 @@
-# Assessment of Current and Future Approaches to Address Variants of Uncertain Significance in Hearing and Ocular Genomics Domains
+# VUS-Hearing-Ocular
 
 This repository contains code and data for analyzing survey results on the use of functional evidence for variant interpretation in **hearing loss (HL)** and **ocular disease (OD)** genes. It includes scripts to process raw survey data, generate figures, and perform additional analyses.
 
