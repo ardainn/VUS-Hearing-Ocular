@@ -1,6 +1,6 @@
 # get survey data and helper functions
-source("_config.R")
-source("_helper.R")
+source("../01_config.R")
+source("../02_helpers.R")
 
 # define plot colors
 colors <- c("#FFDAB9", "#FBC4AB", "#F8AD9D", "#F4978E", "#F08080")
@@ -41,3 +41,4 @@ plot_likert(
 
 # run chisq test
 results_fc <- run_chisq(likert_df_fc, likert_map)
+
