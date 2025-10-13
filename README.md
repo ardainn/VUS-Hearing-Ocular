@@ -13,10 +13,10 @@ Raw and processed data file ready for analysis.
 Custom fonts used in the plots.
 
 3. `scripts/`
-R scripts for figure generation
+R scripts for generating figures.
 
 4. `vus_dist/`
-Distribution of VUS in HL and OD genes in ClinVar and DVD
+Distribution of VUS in HL and OD genes in ClinVar and DVD.
 
 ---
 
