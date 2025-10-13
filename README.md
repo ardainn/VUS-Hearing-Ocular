@@ -6,16 +6,16 @@ TBC
 
 ### Repository Structure
 
-- `data/`
+- `data/`:
 Raw and processed data file ready for analysis.
 
-- `fonts/`
+- `fonts/`:
 Custom fonts used in the plots.
 
-- `scripts/`
+- `scripts/`:
 R scripts for generating figures.
 
-- `vus_dist/`
+- `vus_dist/`:
 Distribution of VUS in HL and OD genes in ClinVar and DVD.
 
 ---
