@@ -1,5 +1,3 @@
-library(dplyr)
-library(ggplot2)
 library(patchwork)
 library(tidyr)
 
@@ -57,6 +55,7 @@ ggsave(
   units = "cm",
   dpi = 300
 )
+
 
 
 
