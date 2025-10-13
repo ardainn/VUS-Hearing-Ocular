@@ -1,9 +1,9 @@
 library(patchwork)
 library(rnaturalearth)
 
-# get survey data and helpers
-source("../01_config.R")
-source("../02_helpers.R")
+# get survey data and helper functions
+source("_config.R")
+source("_helper.R")
 
 #### ORGANIZATIONS ####
 
@@ -73,7 +73,7 @@ world_data <- ne_countries(scale = "medium", returnclass = "sf") %>%
 p3 <- ggplot(world_data) +
   geom_sf(aes(fill = n)) +
   scale_fill_gradient(
-    low = "#A786AC",
+    low = "#DCCEDE",
     high = "#694A6D",
     na.value = "grey90",
     breaks = c(0, 3, 6, 9, 12, 15, 18)
@@ -98,3 +98,46 @@ ggsave(
   dpi = 300
 )
 
+
+#### CONFLICTING EVIDENCE ####
+
+# sum data per domain
+count_confev <- cleaned_data %>%
+  filter(!is.na(conflicting_evidence)) %>%
+  group_by(disease_domain, conflicting_evidence) %>%
+  summarise(N = n(), .groups = "drop")
+
+
+# get domains
+domains <- unique(count_confev$disease_domain)
+
+# list to store plots
+pie_list <- list()
+
+# plot
+for (i in seq_along(domains)) {
+  domain <- domains[i]
+  domain_data <- count_confev %>% filter(disease_domain == domain)
+  
+  pie_list[[i]] <- plot_piechart(
+    domain_data,
+    "conflicting_evidence",
+    colors = c("Yes" = "#B3A1FF", "No" = "#FFCF9F")
+  )
+}
+
+# Optionally assign individual variables
+p4a <- pie_list[[1]]
+p4b <- pie_list[[2]]
+p4c <- pie_list[[3]]
+
+merged_plot2 <- p4a + p4b + p4c
+
+ggsave(
+  "dist_confev.png",
+  plot = merged_plot2,
+  width = 16,
+  height = 8,
+  units = "cm",
+  dpi = 300
+)
