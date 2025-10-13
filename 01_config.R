@@ -80,12 +80,13 @@ cleaned_data[, conflicting_evidence := ifelse(
 cleaned_data[, c(2, 3) := NULL]
 cleaned_data <- cleaned_data[,1:125]
 
-# keep only submission with complete answers
+# keep only submissions with complete answers
 cleaned_data <- cleaned_data[
   rowSums(is.na(cleaned_data)) < (ncol(cleaned_data) / 2)
 ]
 
 #fwrite(cleaned_data, "data/processed/survey_data.csv")
+
 
 
 
