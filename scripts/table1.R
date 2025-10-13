@@ -1,5 +1,4 @@
 library(data.table)
-library(scales)
 
 # function to round to 100
 round_percent <- function(x) {
@@ -91,6 +90,7 @@ tab1 <- make_wide_summary(row_var = "gender")
 tab2 <- make_wide_summary(row_var = "leadership")
 tab3 <- make_wide_summary(row_var = "professional_position")
 tab4 <- make_wide_summary(row_var = "years_professional_experience")
+
 
 
 
