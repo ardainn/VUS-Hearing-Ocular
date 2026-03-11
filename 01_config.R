@@ -1,21 +1,16 @@
 library(data.table)
-library(showtext)
 library(writexl)
 
 # set threads
 setDTthreads(12)
 
-# set working directory
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-
-# add custom fonts
-font_add("HelveticaNeue-Bold", "fonts/HelveticaNeueBold.otf")
-font_add("HelveticaNeue-Roman", "fonts/HelveticaNeueRoman.otf")
+# config fonts
 showtext_auto()
 
 # read survey results
-data <- fread('data/raw/AssessmentOfCurrentA_DATA_2025-08-18_0707.csv')
-source("data/raw/AssessmentOfCurrentA_R_2025-08-18_0707.r")
+#data <- fread('data/raw/AssessmentOfCurrentA_DATA_2025-08-18_0707.csv')
+#source("data/raw/AssessmentOfCurrentA_R_2025-08-18_0707.r")
+setDT(data)
 
 # remove incomplete records
 cleaned_data <- data[data[[3]] != '[not completed]']
@@ -84,6 +79,11 @@ cleaned_data <- cleaned_data[,1:125]
 cleaned_data <- cleaned_data[
   rowSums(is.na(cleaned_data)) < (ncol(cleaned_data) / 2)
 ]
+
+# assign column name
+colnames(cleaned_data) <- trimws(sapply(seq_along(cleaned_data), function(i)
+attr(cleaned_data[[i]], "label") %||% colnames(cleaned_data)[i]))
+
 
 #fwrite(cleaned_data, "data/processed/survey_data.csv")
 

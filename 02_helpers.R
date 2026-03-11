@@ -3,6 +3,7 @@ library(dplyr)
 library(ggplot2)
 library(likert)
 library(reshape2)
+library(tidyr)
 
 #### PROCESSING ####
 
@@ -149,7 +150,7 @@ plot_hist <- function(data, x_col, show_legend = FALSE) {
       size = 5,
       family = "HelveticaNeue-Bold"
     ) +
-    theme_classic(base_size = 28, base_family = "HelveticaNeue-Bold") +
+    theme_minimal(base_size = 28, base_family = "HelveticaNeue-Bold") +
     labs(fill = "Domain") +
     theme(
       plot.title = element_text(hjust = 0.5),
@@ -183,92 +184,76 @@ plot_hist <- function(data, x_col, show_legend = FALSE) {
     )
 }
 
-# function to plot likert
+# functions to plot likert
+
+# functions to plot likert
 plot_likert <- function(likert_df,
                         colors,
                         file_name,
-                        include_center = T,
-                        legend_break = F,
+                        lab_colors = NULL,
+                        include_center = TRUE,
+                        legend_break = FALSE,
                         center_col = NULL,
-                        legend_title_centered = F,
-                        split_legend = F,
-                        add_missing_center_perc = F,
+                        legend_title_centered = FALSE,
+                        split_legend = FALSE,
+                        add_missing_center_perc = FALSE,
                         width = 16,
-                        height = 24 * 7 / 13 - 1) {
-  likert_obj <- likert(items = likert_df, grouping = as.factor(cleaned_data[[2]]))
+                        height = (24 * 7 / 13 - 1)) {
   
-  
-  # plot likert
-  if (!is.null(center_col)) {
-    p <- plot(
-      likert_obj,
-      colors = colors,
-      centered = T,
-      center = center_col,
-      include.center = include_center,
-      wrap = 150,
-      group.order = c("H", "H+V", "V")
-    )
-  } else {
-    p <- plot(
-      likert_obj,
-      colors = colors,
-      centered = T,
-      include.center = include_center,
-      wrap = 150,
-      group.order = c("H", "H+V", "V")
-    )
+  # if label_colors not passed, default all
+  if (is.null(lab_colors)) {
+    lab_colors <- rep("black", length(colors))
   }
   
-  # modify text layers
-  for (i in seq_along(p$layers)) {
-    if ("GeomText" %in% class(p$layers[[i]]$geom)) {
-      p$layers[[i]]$aes_params$size <- 6
-      p$layers[[i]]$aes_params$family <- "HelveticaNeue-Roman"
-    }
-  }
+  # Prepare long format
+  long_df <- likert_df %>%
+    mutate(Group = factor(cleaned_data[[2]], levels = c("H", "H+V", "V"))) %>%
+    pivot_longer(
+      cols = -Group,
+      names_to = "Item",
+      values_to = "Response"
+    ) %>%
+    filter(!is.na(Response)) %>%
+    group_by(Item, Group, Response) %>%
+    summarise(Count = n(), .groups = "drop") %>%
+    group_by(Item, Group) %>%
+    mutate(Percent = Count / sum(Count) * 100) %>%
+    mutate(Group = factor(Group, levels = rev(c("H", "H+V", "V"))))
   
-  p <- p + theme_minimal() + theme(
-    text = element_text(size = 28, family = "HelveticaNeue-Bold"),
-    legend.position = "bottom",
-    legend.box = "horizontal",
-    legend.key.height = unit(0.25, "cm"),
-    legend.key.width = unit(0.25, "cm"),
-    #legend.title = element_text(margin = margin(b = 10))
-  )
   
-  # explicitly remove center from colors and labels
-  if (legend_break) {
-    # calculate center if not defined
-    if (is.null(center_col)) {
-      center_col = ceiling(length(levels(likert_df[[1]])) / 2)
-      print(center_col)
-    }
-    
-    p <- p + scale_fill_manual(
-      values = colors[-center_col],
-      breaks = levels(likert_df[[1]])[-center_col],
-      name = "Response"
+  # Make horizontal stacked bars, grouped vertically
+  p <- ggplot(long_df, aes(x = Group, y = Percent, fill = Response)) +
+    geom_bar(stat = "identity", position = position_stack(reverse = TRUE)) +
+    geom_text(aes(label = sprintf("%.1f%%", Percent), color = Response),
+              position = position_stack(vjust = 0.5, reverse = T),
+              size = 4.5,
+              family = "HelveticaNeue-Roman",
+              show.legend = F
+    ) +
+    scale_fill_manual(values = colors) +
+    scale_color_manual(values = lab_colors) +
+    facet_wrap(~Item, ncol = 1, strip.position = "top") +
+    coord_flip() +
+    theme_minimal() +
+    theme(
+      text = element_text(size = 28, family = "HelveticaNeue-Bold"),
+      legend.position = "bottom",
+      legend.box = "horizontal",
+      legend.key.height = unit(0.25, "cm"),
+      legend.key.width = unit(0.25, "cm"),
+      strip.text = element_text(size = 24)
     )
-  }
   
-  # center legend title if too long
+  # Legend adjustments
   if (legend_title_centered) {
     p <- p +
       theme(legend.title = element_text(margin = margin(b = 10))) +
       guides(fill = guide_legend(title.position = "top", title.hjust = 0.5))
   }
   
-  # split legend into two rows if still too
   if (split_legend) {
-    p <- p + guides(fill = guide_legend(
-      title.position = "top",
-      title.hjust = 0.5,
-      nrow = 2
-    ))
-    
+    p <- p + guides(fill = guide_legend(title.position = "top", title.hjust = 0.5, nrow = 2))
   }
-  
   
   ggsave(
     file_name,
